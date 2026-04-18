@@ -1,3 +1,4 @@
+// pluginの読み込み。apply pluginではなく plugin DSLを使って書かれている
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.5'
@@ -5,6 +6,7 @@ plugins {
 	id 'jacoco'
 }
 
+// ビルドの情報。
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 description = 'spring boot sandbox application'
@@ -15,15 +17,25 @@ java {
 	}
 }
 
+// リポジトリの設定。外部ライブラリを利用する場合はどこからそれをダウンロードしてくるかの設定が必要
+// 今回はmavanが管理しているリポジトリを利用している
 repositories {
 	mavenCentral()
 }
 
+// 外部ライブラリの読み込み。dependenciesブロック内にパッケージ名トライブラリ名を記載する
+// implementationは全パッケージで、testImplementationはtest配下のパッケージで利用できる
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	
+	// OpenTelemetryを利用するために追加
 	implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
 	implementation 'am.ik.spring.opentelemetry:otel-logs-autoconfigure:0.6.0'
+	
+	// compileOnly:実行する時には要らないけど、コンパイル時には必要
 	compileOnly 'org.projectlombok:lombok'
+	
+	// developmentOnly:開発環境でのみ必要。本番環境ではこれで指定した依存関係は含まれない
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
@@ -32,6 +44,9 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
+// もともと存在する「test」というタスクを拡張している
+// org.springframework.boot:spring-boot-starter-testを入れると、useJUnitPlatform()というメソッドが利用できるようになる
+// useJUnitPlatform()はjUnit5で実行するよという意味
 tasks.named('test') {
 	useJUnitPlatform()
 }
