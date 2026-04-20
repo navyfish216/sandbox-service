@@ -27,6 +27,7 @@ repositories {
 // implementationは全パッケージで、testImplementationはtest配下のパッケージで利用できる
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	
 	// OpenTelemetryを利用するために追加
 	implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
