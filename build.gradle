@@ -52,3 +52,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jib {
+    to {
+        image = "sandbox-service-jib:${project.version}"
+    }
+}
