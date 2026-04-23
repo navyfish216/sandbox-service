@@ -60,5 +60,5 @@ jib {
 }
 
 tasks.named("bootBuildImage") {
-    imageName = 'sandbox-service-gradle-buildpacks:${project.version}'
+    imageName = "sandbox-service-gradle-buildpacks:${project.version}"
 }
