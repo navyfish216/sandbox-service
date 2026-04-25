@@ -40,42 +40,57 @@ public class SandBoxControllerTest {
 	
 	@Test
 	public void test_getString() throws Exception {
+		
 		var expect = new SandBoxResponse("Hello World!!");
+		
         given(sandBoxService.getString()).willReturn("Hello World!!");
+        
         MvcResult result = mockMvc.perform(get("/"))
         	.andExpect(status().isOk())
         	.andReturn();
         
         ObjectMapper mapper = new ObjectMapper();
         var actual = mapper.readValue(result.getResponse().getContentAsString(), SandBoxResponse.class);
-        assertEquals(expect.getMessage(), actual.getMessage());
+        assertEquals(expect, actual);
 	}
 	
 	@Test
 	public void test_getErrorInfo_0() throws Exception {
+		
+		String errorCode = "0";
 		var expect = new SandBoxResponse("Hello World!!");
-        given(sandBoxService.getErrorInfo("0")).willReturn("Hello World!!");
-        MvcResult result = mockMvc.perform(get("/error/0"))
+		
+        given(sandBoxService.getErrorInfo(errorCode)).willReturn("Hello World!!");
+        
+        MvcResult result = mockMvc.perform(get("/error/" + errorCode))
         	.andExpect(status().isOk())
         	.andReturn();
         
         ObjectMapper mapper = new ObjectMapper();
         var actual = mapper.readValue(result.getResponse().getContentAsString(), SandBoxResponse.class);
-        assertEquals(expect.getMessage(), actual.getMessage());
+        assertEquals(expect, actual);
 	}
 	
 	@Test
 	public void test_getErrorInfo_1() throws Exception {
-        given(sandBoxService.getErrorInfo("1")).willThrow(new NullPointerException());
-        mockMvc.perform(get("/error/1"))
+		
+		String errorCode = "1";
+		
+        given(sandBoxService.getErrorInfo(errorCode)).willThrow(new NullPointerException());
+        
+        mockMvc.perform(get("/error/"+ errorCode))
         	.andExpect(status().isInternalServerError())
         	.andExpect(content().string("エラーが発生しました。"));
 	}
 	
 	@Test
 	public void test_getErrorInfo_2() throws Exception {
-        given(sandBoxService.getErrorInfo("2")).willThrow(new ApplicationException("2"));
-        mockMvc.perform(get("/error/2"))
+		
+		String errorCode = "2";
+		
+        given(sandBoxService.getErrorInfo(errorCode)).willThrow(new ApplicationException(errorCode));
+
+        mockMvc.perform(get("/error/" + errorCode))
         	.andExpect(status().isBadRequest())
         	.andExpect(content().string("アプリケーションエラーが発生しました。"));
 	}
