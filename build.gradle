@@ -10,7 +10,7 @@ plugins {
 
 // ビルドの情報。
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 description = 'spring boot sandbox application'
 
 java {
