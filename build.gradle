@@ -1,10 +1,11 @@
 // pluginの読み込み。apply pluginではなく plugin DSLを使って書かれている
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.5'
+	id 'org.springframework.boot' version '4.0.6'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'jacoco'
 	id 'com.google.cloud.tools.jib' version '3.5.2'
+	id 'maven-publish'
 }
 
 // ビルドの情報。
@@ -22,6 +23,7 @@ java {
 // 今回はmavanが管理しているリポジトリを利用している
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 // 外部ライブラリの読み込み。dependenciesブロック内にパッケージ名トライブラリ名を記載する
@@ -33,6 +35,8 @@ dependencies {
 	// OpenTelemetryを利用するために追加
 	implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
 	implementation 'am.ik.spring.opentelemetry:otel-logs-autoconfigure:0.6.0'
+	
+	implementation 'com.example:java-shared:0.0.2-SNAPSHOT'
 	
 	// compileOnly:実行する時には要らないけど、コンパイル時には必要
 	compileOnly 'org.projectlombok:lombok'
@@ -55,10 +59,23 @@ tasks.named('test') {
 
 jib {
     to {
-        image = "sandbox-service-jib:${project.version}"
+        //image = "sandbox-service-jib:${project.version}"
+        image = "${project.name}-jib:${project.version}"
     }
 }
 
 tasks.named("bootBuildImage") {
-    imageName = "sandbox-service-gradle-buildpacks:${project.version}"
+    //imageName = "sandbox-service-gradle-buildpacks:${project.version}"
+    imageName = "${project.name}-buildpacks-gradle:${project.version}"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "${project.group}"
+            artifactId = "${project.name}"
+            version = "${project.version}"
+            from components.java
+        }
+    }
 }

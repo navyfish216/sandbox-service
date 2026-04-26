@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.sahred.util.ProcessUtility;
 import com.example.demo.sandbox.service.SandBoxService;
-import com.example.demo.sandbox.util.ProcessUtility;
 import com.example.demo.sandbox.web.response.SandBoxResponse;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ public class SandBoxController {
 	private MessageSource messageSource;
 	
 	@GetMapping("/")
-	public SandBoxResponse getString() {
+	public SandBoxResponse getString() throws Exception {
 		
 		log.info(messageSource.getMessage("sandbox.controller.log.start", new String[]{processUtility.getProccessName()}, Locale.getDefault()));
 		var response = new SandBoxResponse(sandBoxService.getString());
