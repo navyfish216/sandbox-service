@@ -15,9 +15,9 @@ import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import com.example.demo.sandbox.exception.ApplicationException;
+import com.example.demo.sahred.exception.ApplicationException;
+import com.example.demo.sahred.util.ProcessUtility;
 import com.example.demo.sandbox.service.SandBoxService;
-import com.example.demo.sandbox.util.ProcessUtility;
 import com.example.demo.sandbox.web.response.SandBoxResponse;
 
 import tools.jackson.databind.ObjectMapper;

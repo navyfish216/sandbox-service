@@ -9,8 +9,8 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.MessageSource;
 
-import com.example.demo.sandbox.exception.ApplicationException;
-import com.example.demo.sandbox.util.ProcessUtility;
+import com.example.demo.sahred.exception.ApplicationException;
+import com.example.demo.sahred.util.ProcessUtility;
 
 @ExtendWith(MockitoExtension.class)
 public class SandBoxServiceTest {
@@ -25,7 +25,7 @@ public class SandBoxServiceTest {
 	SandBoxService target;
 	
 	@Test
-	public void test_SandBox() {
+	public void test_SandBox() throws Exception {
 		var result = target.getString();
 		assertEquals(result, "Hello World!!");
 	}
