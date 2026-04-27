@@ -8,7 +8,7 @@ plugins {
 	id 'maven-publish'
 }
 
-// ビルドの情報。
+// ビルドの基本情報
 group = 'com.example'
 version = '0.0.2-SNAPSHOT'
 description = 'spring boot sandbox application'
@@ -20,7 +20,7 @@ java {
 }
 
 // リポジトリの設定。外部ライブラリを利用する場合はどこからそれをダウンロードしてくるかの設定が必要
-// 今回はmavanが管理しているリポジトリを利用している
+// 今回はmavanが管理しているリポジトリとローカルリポジトリを利用
 repositories {
 	mavenCentral()
 	mavenLocal()
