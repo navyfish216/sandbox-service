@@ -10,7 +10,7 @@ plugins {
 
 // ビルドの基本情報
 group = 'com.example'
-version = '0.0.2-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 description = 'spring boot sandbox application'
 
 java {
@@ -29,14 +29,14 @@ repositories {
 // 外部ライブラリの読み込み。dependenciesブロック内にパッケージ名トライブラリ名を記載する
 // implementationは全パッケージで、testImplementationはtest配下のパッケージで利用できる
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	//implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	
 	// OpenTelemetryを利用するために追加
-	implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
-	implementation 'am.ik.spring.opentelemetry:otel-logs-autoconfigure:0.6.0'
+	//implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
+	//implementation 'am.ik.spring.opentelemetry:otel-logs-autoconfigure:0.6.0'
 	
-	implementation 'com.example:java-shared:0.0.2-SNAPSHOT'
+	implementation 'com.example:java-shared:0.0.3-SNAPSHOT'
 	
 	// compileOnly:実行する時には要らないけど、コンパイル時には必要
 	compileOnly 'org.projectlombok:lombok'
