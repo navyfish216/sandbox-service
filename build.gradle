@@ -32,6 +32,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	
+	// SpringBoot4以降でRestTemplateBuilderを使用するには依存関係を別途追加する必要あり
+	implementation 'org.springframework.boot:spring-boot-starter-restclient'
 
 	// OpenTelemetryを利用するために追加
 	//implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
