@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>top page</title>
+		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+			rel="stylesheet" 
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+			crossorigin="anonymous">
+	</head>
+	<body class="container">
+		<h1 class="display-4 mb-4">Hello page</h1>
+		<p th:text="${msg}"></p>
+		
+		<div th:switch="${month}">
+			<p class="alert alert-primary" th:case="1" th:text="${month} + 月は正月です。"></p>
+			<p class="alert alert-primary" th:case="2" th:text="${month} + 月は冬です。"></p>
+			<p class="alert alert-primary" th:case="3" th:text="${month} + 月は春です。"></p>
+			<p class="alert alert-primary" th:case="4" th:text="${month} + 月は春です。"></p>
+			<p class="alert alert-primary" th:case="5" th:text="${month} + 月は春です。"></p>
+			<p class="alert alert-primary" th:case="6" th:text="${month} + 月は夏です。"></p>
+			<p class="alert alert-primary" th:case="7" th:text="${month} + 月は夏です。"></p>
+			<p class="alert alert-primary" th:case="8" th:text="${month} + 月は夏休みです。"></p>
+			<p class="alert alert-primary" th:case="9" th:text="${month} + 月は秋です。"></p>
+			<p class="alert alert-primary" th:case="10" th:text="${month} + 月は秋です。"></p>
+			<p class="alert alert-primary" th:case="11" th:text="${month} + 月は秋です。"></p>
+			<p class="alert alert-primary" th:case="12" th:text="${month} + 月は師走です。"></p>
+			<p class="alert alert-primary" th:case="*" th:text="1～12の数値を指定してください。"></p>
+		</div>
+	</body>
+</html>

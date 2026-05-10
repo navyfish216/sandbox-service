@@ -1,5 +1,7 @@
 package com.example.demo.sandbox.web;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.util.ArrayUtils;
 
+import com.example.demo.sandbox.web.response.SandBoxResponse;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/web")
 @Slf4j
 public class SandboxWebController {
+
+	private boolean flag = false;
 
 	@GetMapping({"", "/"})
 	public ModelAndView getIndex(ModelAndView mav) {
@@ -119,4 +125,35 @@ public class SandboxWebController {
 
 		return mav;
 	}
+
+	@GetMapping({"/view-branch", "/view-branch/"})
+	public ModelAndView getViewBranch(ModelAndView mav) {
+		flag = !flag;
+		mav.addObject("flag", flag);
+		mav.addObject("msg", "サンプルのメッセージです。");
+		mav.setViewName("view-branch/index");
+		return mav;
+	}
+
+	@GetMapping({"/loop", "/loop/"})
+	public ModelAndView getLoop(ModelAndView mav) {
+		mav.addObject("msg", "データを表示します。");
+		//		String[] data = new String[]{"One", "Two", "Three"};
+		List<SandBoxResponse> data = List.of(
+				new SandBoxResponse("One"),
+				new SandBoxResponse("Two"),
+				new SandBoxResponse("Three"));
+		mav.addObject("data", data);
+		mav.setViewName("loop/index");
+		return mav;
+	}
+
+	@GetMapping({"/month/{month}", "/month/{month}/"})
+	public ModelAndView getMonth(@PathVariable String month, ModelAndView mav) {
+		mav.addObject("msg", month + "月は？");
+		mav.addObject("month", month);
+		mav.setViewName("month/index");
+		return mav;
+	}
+
 }
