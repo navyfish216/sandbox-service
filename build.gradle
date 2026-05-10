@@ -62,24 +62,24 @@ tasks.named('test') {
 }
 
 jib {
-    to {
-        //image = "sandbox-service-jib:${project.version}"
-        image = "${project.name}-jib:${project.version}"
-    }
+	to {
+		//image = "sandbox-service-jib:${project.version}"
+		image = "${project.name}-jib:${project.version}"
+	}
 }
 
 tasks.named("bootBuildImage") {
-    //imageName = "sandbox-service-gradle-buildpacks:${project.version}"
-    imageName = "${project.name}-buildpacks-gradle:${project.version}"
+	//imageName = "sandbox-service-gradle-buildpacks:${project.version}"
+	imageName = "${project.name}-buildpacks-gradle:${project.version}"
 }
 
 publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = "${project.group}"
-            artifactId = "${project.name}"
-            version = "${project.version}"
-            from components.java
-        }
-    }
+	publications {
+		maven(MavenPublication) {
+			groupId = "${project.group}"
+			artifactId = "${project.name}"
+			version = "${project.version}"
+			from components.java
+		}
+	}
 }
