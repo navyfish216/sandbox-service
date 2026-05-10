@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SandboxWebController {
 
+	private boolean flag = false;
+
 	@GetMapping({"", "/"})
 	public ModelAndView getIndex(ModelAndView mav) {
 
@@ -119,4 +121,14 @@ public class SandboxWebController {
 
 		return mav;
 	}
+
+	@GetMapping({"/view-branch", "/view-branch/"})
+	public ModelAndView getViewBranch(ModelAndView mav) {
+		flag = !flag;
+		mav.addObject("flag", flag);
+		mav.addObject("msg", "サンプルのメッセージです。");
+		mav.setViewName("view-branch/index");
+		return mav;
+	}
+
 }
