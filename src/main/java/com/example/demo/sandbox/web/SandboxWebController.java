@@ -137,7 +137,6 @@ public class SandboxWebController {
 
 	@GetMapping({"/loop", "/loop/"})
 	public ModelAndView getLoop(ModelAndView mav) {
-		flag = !flag;
 		mav.addObject("msg", "データを表示します。");
 		//		String[] data = new String[]{"One", "Two", "Three"};
 		List<SandBoxResponse> data = List.of(
@@ -146,6 +145,14 @@ public class SandboxWebController {
 				new SandBoxResponse("Three"));
 		mav.addObject("data", data);
 		mav.setViewName("loop/index");
+		return mav;
+	}
+
+	@GetMapping({"/month/{month}", "/month/{month}/"})
+	public ModelAndView getMonth(@PathVariable String month, ModelAndView mav) {
+		mav.addObject("msg", month + "月は？");
+		mav.addObject("month", month);
+		mav.setViewName("month/index");
 		return mav;
 	}
 
