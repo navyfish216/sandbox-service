@@ -21,51 +21,51 @@ public class SandBoxControllerIntegrationTest {
 
 	@Autowired
 	MockMvc mockMvc;
-    
+
 	@Test
 	public void test_1() throws Exception {
-		
+
 		var expect = new SandBoxResponse("Hello World!!");
-		
+
 		MvcResult result = mockMvc.perform(get("/")).andExpect(status().isOk()).andReturn();
 
 		ObjectMapper mapper = new ObjectMapper();
-        var actual = mapper.readValue(result.getResponse().getContentAsString(), SandBoxResponse.class);
-        assertEquals(expect, actual);
+		var actual = mapper.readValue(result.getResponse().getContentAsString(), SandBoxResponse.class);
+		assertEquals(expect, actual);
 	}
-	
+
 	@Test
 	public void test_getErrorInfo_0() throws Exception {
-		
+
 		String errorCode = "0";
 		var expect = new SandBoxResponse("Hello World!!");
-		
-        MvcResult result = mockMvc.perform(get("/error/" + errorCode))
-        	.andExpect(status().isOk())
-        	.andReturn();
-        
-        ObjectMapper mapper = new ObjectMapper();
-        var actual = mapper.readValue(result.getResponse().getContentAsString(), SandBoxResponse.class);
-        assertEquals(expect, actual);
+
+		MvcResult result = mockMvc.perform(get("/error/" + errorCode))
+				.andExpect(status().isOk())
+				.andReturn();
+
+		ObjectMapper mapper = new ObjectMapper();
+		var actual = mapper.readValue(result.getResponse().getContentAsString(), SandBoxResponse.class);
+		assertEquals(expect, actual);
 	}
-	
+
 	@Test
 	public void test_getErrorInfo_1() throws Exception {
-		
+
 		String errorCode = "1";
-		
-        mockMvc.perform(get("/error/"+ errorCode))
-        	.andExpect(status().isInternalServerError())
-        	.andExpect(content().string("エラーが発生しました。"));
+
+		mockMvc.perform(get("/error/" + errorCode))
+				.andExpect(status().isInternalServerError())
+				.andExpect(content().string("エラーが発生しました。"));
 	}
-	
+
 	@Test
 	public void test_getErrorInfo_2() throws Exception {
-		
+
 		String errorCode = "2";
-		
-        mockMvc.perform(get("/error/" + errorCode))
-        	.andExpect(status().isBadRequest())
-        	.andExpect(content().string("アプリケーションエラーが発生しました。"));
+
+		mockMvc.perform(get("/error/" + errorCode))
+				.andExpect(status().isBadRequest())
+				.andExpect(content().string("アプリケーションエラーが発生しました。"));
 	}
 }

@@ -13,5 +13,4 @@ public class SandboxServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SandboxServiceApplication.class, args);
 	}
-
 }
