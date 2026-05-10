@@ -1,5 +1,7 @@
 package com.example.demo.sandbox.web;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.util.ArrayUtils;
+
+import com.example.demo.sandbox.web.response.SandBoxResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -128,6 +132,20 @@ public class SandboxWebController {
 		mav.addObject("flag", flag);
 		mav.addObject("msg", "サンプルのメッセージです。");
 		mav.setViewName("view-branch/index");
+		return mav;
+	}
+
+	@GetMapping({"/loop", "/loop/"})
+	public ModelAndView getLoop(ModelAndView mav) {
+		flag = !flag;
+		mav.addObject("msg", "データを表示します。");
+		//		String[] data = new String[]{"One", "Two", "Three"};
+		List<SandBoxResponse> data = List.of(
+				new SandBoxResponse("One"),
+				new SandBoxResponse("Two"),
+				new SandBoxResponse("Three"));
+		mav.addObject("data", data);
+		mav.setViewName("loop/index");
 		return mav;
 	}
 
