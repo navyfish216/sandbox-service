@@ -72,10 +72,10 @@ public class SandboxWebController {
 		String res = "";
 
 		try {
-			res = "check:" + check1
-					+ " radio:" + radio1
-					+ " select:" + select1
-					+ "\nselect2:";
+			res = "check : " + check1 + "\n"
+					+ "radio : " + radio1 + "\n"
+					+ "select1 : " + select1 + "\n"
+					+ "select2 : ";
 		} catch (NullPointerException e) {
 		}
 
