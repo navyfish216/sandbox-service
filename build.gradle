@@ -10,7 +10,7 @@ plugins {
 
 // ビルドの基本情報
 group = 'com.example'
-version = '0.0.3-SNAPSHOT'
+version = '0.0.4-SNAPSHOT'
 description = 'spring boot sandbox application'
 
 java {
@@ -40,7 +40,7 @@ dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
 	//implementation 'am.ik.spring.opentelemetry:otel-logs-autoconfigure:0.6.0'
 	
-	implementation 'com.example:java-shared:0.0.3-SNAPSHOT'
+	implementation 'com.example:java-shared:0.0.4-SNAPSHOT'
 	
 	// compileOnly:実行する時には要らないけど、コンパイル時には必要
 	compileOnly 'org.projectlombok:lombok'
