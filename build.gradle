@@ -62,9 +62,9 @@ tasks.named('test') {
 }
 
 jib {
-	from {
-		image = "sandbox-paketobuildpacks-ubuntu-noble-run:latest"
-	}
+//	from {
+//		image = "sandbox-paketobuildpacks-ubuntu-noble-run:latest"
+//	}
 	to {
 		//image = "sandbox-service-jib:${project.version}"
 		image = "${project.name}-jib:${project.version}"
