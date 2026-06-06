@@ -62,9 +62,9 @@ tasks.named('test') {
 }
 
 jib {
-	from {
-		image = "039314424628.dkr.ecr.ap-northeast-1.amazonaws.com/navyfish216/sandbox-paketobuildpacks-ubuntu-noble-run:latest"
-	}
+//	from {
+//		image = "039314424628.dkr.ecr.ap-northeast-1.amazonaws.com/navyfish216/sandbox-paketobuildpacks-ubuntu-noble-run:latest"
+//	}
 	to {
 		//image = "sandbox-service-jib:${project.version}"
 		image = "${project.name}-jib:${project.version}"
