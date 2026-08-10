@@ -2,12 +2,13 @@ package com.example.demo.sandbox.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.context.MessageSource;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import com.example.demo.sahred.exception.ApplicationException;
 import com.example.demo.sahred.util.ProcessUtility;
@@ -15,14 +16,16 @@ import com.example.demo.sahred.util.ProcessUtility;
 @ExtendWith(MockitoExtension.class)
 public class SandBoxServiceTest {
 
-	@Spy
-	ProcessUtility processUtility;
-
-	@Spy
-	MessageSource messageSource;
-
 	@InjectMocks
 	SandBoxService target;
+
+	@BeforeEach
+	public void beforeAll() {
+		var messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasename("common-messages");
+		ReflectionTestUtils.setField(target, "messageSource", messageSource);
+		ReflectionTestUtils.setField(target, "processUtility", new ProcessUtility());
+	}
 
 	@Test
 	public void test_SandBox() throws Exception {
