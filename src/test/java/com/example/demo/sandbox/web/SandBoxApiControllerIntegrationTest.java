@@ -17,13 +17,13 @@ import tools.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SandBoxControllerIntegrationTest {
+public class SandBoxApiControllerIntegrationTest {
 
 	@Autowired
 	MockMvc mockMvc;
 
 	@Test
-	public void test_1() throws Exception {
+	public void test_getString() throws Exception {
 
 		var expect = new SandBoxResponse("Hello World!!");
 
@@ -67,5 +67,15 @@ public class SandBoxControllerIntegrationTest {
 		mockMvc.perform(get("/error/" + errorCode))
 				.andExpect(status().isBadRequest())
 				.andExpect(content().string("アプリケーションエラーが発生しました。"));
+	}
+
+	@Test
+	public void test_getSleep() throws Exception {
+
+		MvcResult result = mockMvc.perform(get("/sleep")).andExpect(status().isOk()).andReturn();
+
+		ObjectMapper mapper = new ObjectMapper();
+		var actual = mapper.readValue(result.getResponse().getContentAsString(), SandBoxResponse.class);
+		assertNotNull(actual);
 	}
 }
