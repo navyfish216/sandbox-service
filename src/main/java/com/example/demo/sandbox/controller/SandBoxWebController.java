@@ -1,4 +1,4 @@
-package com.example.demo.sandbox.web;
+package com.example.demo.sandbox.controller;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.util.ArrayUtils;
 
-import com.example.demo.sandbox.web.response.SandBoxResponse;
+import com.example.demo.sandbox.controller.response.SandBoxResponse;
 
 import lombok.extern.slf4j.Slf4j;
 

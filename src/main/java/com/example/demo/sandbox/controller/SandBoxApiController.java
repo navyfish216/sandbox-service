@@ -1,4 +1,4 @@
-package com.example.demo.sandbox.web;
+package com.example.demo.sandbox.controller;
 
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.sahred.util.ProcessUtility;
+import com.example.demo.sandbox.controller.response.SandBoxResponse;
 import com.example.demo.sandbox.service.SandBoxService;
-import com.example.demo.sandbox.web.response.SandBoxResponse;
 
 import lombok.extern.slf4j.Slf4j;
 

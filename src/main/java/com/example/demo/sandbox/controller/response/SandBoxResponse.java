@@ -1,4 +1,4 @@
-package com.example.demo.sandbox.web.response;
+package com.example.demo.sandbox.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
