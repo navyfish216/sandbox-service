@@ -5,6 +5,8 @@ import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.concurrent.CompletableFuture;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -22,9 +24,9 @@ import com.example.demo.sandbox.web.response.SandBoxResponse;
 
 import tools.jackson.databind.ObjectMapper;
 
-@WebMvcTest(SandBoxController.class)
+@WebMvcTest(SandBoxApiController.class)
 @Import(ProcessUtility.class)
-public class SandBoxControllerTest {
+public class SandBoxApiControllerTest {
 
 	@Autowired
 	MockMvc mockMvc;
@@ -93,5 +95,23 @@ public class SandBoxControllerTest {
 		mockMvc.perform(get("/error/" + errorCode))
 				.andExpect(status().isBadRequest())
 				.andExpect(content().string("アプリケーションエラーが発生しました。"));
+	}
+
+	@Test
+	public void test_getSleep() throws Exception {
+
+		var expect = new SandBoxResponse("1回目のSleep時間：1、2回目のSleep時間：2。");
+
+		given(sandBoxService.sleepRandom())
+				.willReturn(CompletableFuture.completedFuture(1))
+				.willReturn(CompletableFuture.completedFuture(2));
+
+		MvcResult result = mockMvc.perform(get("/sleep"))
+				.andExpect(status().isOk())
+				.andReturn();
+
+		ObjectMapper mapper = new ObjectMapper();
+		var actual = mapper.readValue(result.getResponse().getContentAsString(), SandBoxResponse.class);
+		assertEquals(expect, actual);
 	}
 }
