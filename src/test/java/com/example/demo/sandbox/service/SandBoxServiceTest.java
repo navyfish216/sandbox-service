@@ -2,6 +2,8 @@ package com.example.demo.sandbox.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.concurrent.CompletableFuture;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -52,6 +54,13 @@ public class SandBoxServiceTest {
 			target.getErrorInfo("2");
 		});
 		assertTrue(exception.getMessage().contains("2"));
+	}
+
+	@Test
+	public void test_sleepRandom() throws Exception {
+		CompletableFuture<Integer> future = target.sleepRandom();
+		Integer result = future.get();
+		assertNotNull(result);
 	}
 
 }

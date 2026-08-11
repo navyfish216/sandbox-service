@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-public class SandBoxController {
+public class SandBoxApiController {
 
 	@Autowired
 	private SandBoxService sandBoxService;
