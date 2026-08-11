@@ -1,4 +1,4 @@
-package com.example.demo.sandbox.web;
+package com.example.demo.sandbox.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -17,7 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriUtils;
 
 import com.example.demo.sahred.util.ProcessUtility;
-import com.example.demo.sandbox.web.response.SandBoxResponse;
+import com.example.demo.sandbox.controller.SandBoxWebController;
+import com.example.demo.sandbox.controller.response.SandBoxResponse;
 
 @WebMvcTest(SandBoxWebController.class)
 @Import(ProcessUtility.class)

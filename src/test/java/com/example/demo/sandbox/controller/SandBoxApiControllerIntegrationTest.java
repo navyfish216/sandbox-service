@@ -1,4 +1,4 @@
-package com.example.demo.sandbox.web;
+package com.example.demo.sandbox.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -11,7 +11,7 @@ import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import com.example.demo.sandbox.web.response.SandBoxResponse;
+import com.example.demo.sandbox.controller.response.SandBoxResponse;
 
 import tools.jackson.databind.ObjectMapper;
 
