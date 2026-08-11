@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/web")
 @Slf4j
-public class SandboxWebController {
+public class SandBoxWebController {
 
 	private boolean flag = false;
 
