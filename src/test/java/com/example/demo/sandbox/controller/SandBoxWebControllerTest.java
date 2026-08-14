@@ -97,6 +97,16 @@ public class SandBoxWebControllerTest {
 	}
 
 	@Test
+	public void test_postMultiForm_3() throws Exception {
+
+		mockMvc.perform(post("/web/multi-form"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("multi-form/index"))
+				.andExpect(model().attribute("msg", "check : false\nradio : null\nselect1 : null\nselect2 : no select"))
+				.andReturn();
+	}
+
+	@Test
 	public void test_getForwardAndRedirect() throws Exception {
 
 		mockMvc.perform(get("/web/forward-and-redirect"))
